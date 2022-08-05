@@ -1,0 +1,67 @@
+{% extends 'base.html' %} {% block title %} Home {% endblock title %}
+{% block body %}
+<section class="home-banner-area h-100" style="background-color: #F8F0E3;')">
+  <div class="container-lg">
+    <div class="row">
+      <div class="col">
+        <div class="home-banner-wrap">
+          <h2>Best place for learning</h2>
+          <p>Learn from any topic, choose from category</p>
+          <form class="" action="" method="get">
+            <div class="input-group">
+              <input
+                type="text"
+                class="form-control"
+                name="q"
+                placeholder="what do you want to learn?"
+              />
+              <div class="input-group-append">
+                <button class="btn" type="submit">
+                  <i class="fas fa-search"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="home-fact-area">
+    <div class="container-lg">
+        <div class="row">
+            <div class="col-md-4 d-flex">
+                <div class="home-fact-box mr-md-auto ml-auto mr-auto">
+                    <i class="fas fa-bullseye float-left"></i>
+                    <div class="text-box">
+                        <h4>{{ courses.count }} online courses</h4>
+                        <p>Explore A Variety Of Fresh Topics</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 d-flex">
+                <div class="home-fact-box mr-md-auto ml-auto mr-auto">
+                    <i class="fa fa-check float-left"></i>
+                    <div class="text-box">
+                        <h4>Expert Instruction</h4>
+                        <p>Find The Right Course For You</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 d-flex">
+                <div class="home-fact-box mr-md-auto ml-auto mr-auto">
+                    <i class="fa fa-clock float-left"></i>
+                    <div class="text-box">
+                        <h4>Lifetime Access</h4>
+                        <p>Learn On Your Schedule</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% endblock body %}
