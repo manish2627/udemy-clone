@@ -1,67 +1,34 @@
 {% extends 'base.html' %} {% block title %} Home {% endblock title %}
 {% block body %}
-<section class="home-banner-area h-100" style="background-color: #F8F0E3;')">
-  <div class="container-lg">
-    <div class="row">
-      <div class="col">
-        <div class="home-banner-wrap">
-          <h2>Best place for learning</h2>
-          <p>Learn from any topic, choose from category</p>
-          <form class="" action="" method="get">
-            <div class="input-group">
-              <input
-                type="text"
-                class="form-control"
-                name="q"
-                placeholder="what do you want to learn?"
-              />
-              <div class="input-group-append">
-                <button class="btn" type="submit">
-                  <i class="fas fa-search"></i>
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
+<div class="container">
+<div class="jumbotron">
+    <h1 class="display-4">Welcome</h1>
+    <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+    <hr class="my-4">
+    <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+    <p class="lead">
+      <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+    </p>
   </div>
-</section>
-<section class="home-fact-area">
-    <div class="container-lg">
-        <div class="row">
-            <div class="col-md-4 d-flex">
-                <div class="home-fact-box mr-md-auto ml-auto mr-auto">
-                    <i class="fas fa-bullseye float-left"></i>
-                    <div class="text-box">
-                        <h4>{{ courses.count }} online courses</h4>
-                        <p>Explore A Variety Of Fresh Topics</p>
-                    </div>
+</div>
+<div class="container">
+    <h1 class="my-2">Ousr Courses:</h1>
+    <div class="row">
+        {% for course in courses  %}
+        <div class="col">
+            <div class="card" style="width: 18rem;">
+                <img src="{{ course.image.url }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">{{course.title}}</h5>
+                  <p class="card-text">{{course.desc}}</p>
+                  <a href="#" class="btn btn-primary">Buy Now</a>
                 </div>
-            </div>
-
-            <div class="col-md-4 d-flex">
-                <div class="home-fact-box mr-md-auto ml-auto mr-auto">
-                    <i class="fa fa-check float-left"></i>
-                    <div class="text-box">
-                        <h4>Expert Instruction</h4>
-                        <p>Find The Right Course For You</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 d-flex">
-                <div class="home-fact-box mr-md-auto ml-auto mr-auto">
-                    <i class="fa fa-clock float-left"></i>
-                    <div class="text-box">
-                        <h4>Lifetime Access</h4>
-                        <p>Learn On Your Schedule</p>
-                    </div>
-                </div>
-            </div>
+              </div>
         </div>
+        {% endfor %}
+      
     </div>
-</section>
+</div>
 
 
 {% endblock body %}
