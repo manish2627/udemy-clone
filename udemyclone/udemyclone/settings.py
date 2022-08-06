@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'course.apps.CourseConfig',
     'udemy.apps.UdemyConfig',
+    'account'
 ]
 
 MIDDLEWARE = [

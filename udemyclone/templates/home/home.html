@@ -1,18 +1,32 @@
 {% extends 'base.html' %} {% block title %} Home {% endblock title %}
 {% block body %}
-<div class="container">
+{% load static %}
+<div class="container-fluid mx-0">
+  <div id="carouselExampleSlidesOnly" class="carousel slide w-100" data-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item  active">
+          <img src="{% static 'img/bg2.jpg' %}" class="d-block w-100 mx-0 " alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'img/learning.jpg' %}" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'img/bg2.jpg' %}" class="d-block w-100" alt="...">
+      </div>
+    </div>
+  </div>
 <div class="jumbotron">
-    <h1 class="display-4">Welcome to UdemyClone</h1>
-    <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+    <h1 class="display-4 w-100">Welcome to UdemyClone</h1>
+    <p class="lead">Skills for your present (and your future). Get started with us.</p>
     <hr class="my-4">
     <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
     <p class="lead">
-      <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+      <a class="btn btn-primary btn-lg" href="#" role="button">Let's start learning,{{request.user.username}}</a>
     </p>
   </div>
 </div>
 <div class="container">
-    <h1 class="my-2">Ousr Courses:</h1>
+    <h2 class="my-3">Ousr Courses:</h2>
     <div class="row">
         {% for course in courses  %}
         <div class="col">

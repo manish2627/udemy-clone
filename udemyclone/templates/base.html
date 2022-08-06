@@ -16,7 +16,7 @@
 <body>
   <!--nav bar start here-->
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Udemy Clone</a>
+    <a class="navbar-brand" href="/">Udemy Clone</a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,10 +26,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
+          <a class="nav-link" href="coursehome/">Courses</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
@@ -50,13 +50,13 @@
         </button>
         
       </form>
-      {% if request.user.is_authenticated %}
+      {% if request.session.user %}
 
       <ul class="navbar-nav mr-2">
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href='#' id="navbarDropdown" role="button" data-toggle="dropdown">
             <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle mx-2" style="width: 40px"
-            alt="Avatar" /></a>{{request.user.username}}
+            alt="Avatar" />{{request.user.username}}</a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="account/logout/">Logout</a>
 
@@ -94,13 +94,13 @@ aria-hidden="true">
       <form action="account/login/" method="POST">{% csrf_token %}
         
         <div class="form-group">
-          <label for="exampleFormControlInput1">User Name</label>
-          <input type="test" class="form-control" id="username" name="username" placeholder="username">
+          <label for="exampleFormControlInput1">Enter your email</label>
+          <input type="test" class="form-control" id="username" name="email" placeholder="username">
         </div>
 
         <div class="form-group">
           <label for="pass">Password</label>
-          <input type="Password" class="form-control" id="pass" name="pass"></input>
+          <input type="Password" class="form-control" id="password" name="password"></input>
         </div>
         <button type="submit" class="btn btn-secondary">Log in </button>
 
