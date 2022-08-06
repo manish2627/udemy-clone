@@ -12,6 +12,7 @@ class Course(models.Model):
 
     def __str__(self) :
         return self.title
+
 class CourseLesson(models.Model):
     sno = models.AutoField(primary_key= True)
     lesson_name = models.CharField(max_length=50)
@@ -21,3 +22,14 @@ class CourseLesson(models.Model):
     def __str__(self):
         return self.lesson_name
 
+
+class Video(models.Model):
+    sno = models.AutoField(primary_key=True)
+    video_course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    video_lesson = models.ForeignKey(CourseLesson, on_delete=models.CASCADE)
+    video_name = models.CharField(max_length=20)
+    video_link = models.CharField(max_length=100)
+    video_desc = models.TextField(default="")
+
+    def __str__(self) :
+        return self.video_name

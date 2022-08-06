@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}Courses {% endblock title %}
+{% block body %}
+<div class="container-fluid">
+
+   <h2 class="my-4">Our Courses:
+
+   </h2>
+    {% comment %} <div class="container"> {% endcomment %}
+        <div class="container">
+        <div class="row">
+            {% for course in courses  %}
+            <div class="col my-3">
+                <div class="card" style="width: 18rem; margin-top: -16px; position: relative;">
+                    <img src="{{ course.image.url }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">{{course.title}}</h5>
+                      <p class="card-text">{{course.desc}}</p>
+                      <a href="course/coursehome{{course.sno}}" class="btn btn-primary">Buy Now</a>
+                    </div>
+                  </div>
+            </div>
+            {% endfor %}
+        </div>
+        </div>
+    {% comment %} </div> {% endcomment %}
+</div>
+{% endblock body %}
