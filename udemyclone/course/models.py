@@ -6,6 +6,8 @@ class Course(models.Model):
     title = models.CharField(max_length=50, default="")
     price = models.FloatField( )
     desc = models.CharField(max_length=50, default="")
+    content = models.TextField(default="")
+
     image = models.ImageField()
 
     def __str__(self) :

@@ -2,5 +2,29 @@
 {% block title %}Courses{% endblock title %}
 {% block body %}
 
-courses
+<div class="container-fluid">
+
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+          <h1 class="display-4">{{course.title}}</h1>
+          <p class="lead">{{course.desc}}</p>
+        </div>
+      </div>
+      <div class="card mr-4" style="width: 18rem; margin-top: -161px; position: relative;
+      float: right">
+        <img src={{course.image.url}} class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{course.title}}</h5>
+          <p class="card-text">{{course.desc}}</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
+</div>
+<div class="container ">
+    <h3 >What you'll learn</h3>
+    <p>{{course.content|truncatechars:455}}</p>
+    <h3 >Course content</h3>
+</div>
+
+
 {% endblock body %}

@@ -1,9 +1,8 @@
-from operator import imod
+
 from django.shortcuts import render,redirect,HttpResponse
 # from django.contrib.auth.models import User
 from account.models import User
 from django.contrib import messages 
-# from services.views import send_verification_link,reset_password_mail_validation
 from django.contrib.auth  import authenticate,  login, logout
 
 # Create your views here.
@@ -39,23 +38,8 @@ def signUp(request):
         except:
             myuser = User(user=username,email=signupemail,password=pass1)
             myuser.save()
-            # send_verification_link(myuser)
             messages.success(request,'Account created successfully  Please check your mail to conform your email')
             return redirect('/') 
-
-        user = User.objects.create_user(username, signupemail, pass1)
-        user.first_name = fname
-        user.last_name = lname
-        user.save()
-        messages.success(request, 'your account successfully created  !!!')
-        
-
-        return redirect('home')
-
-    else:
-        return HttpResponse(" 404 Page not found " )
-
-
 
 
 def logIn(request):
@@ -80,5 +64,5 @@ def logIn(request):
 
 def logOut(request):
     request.session.flush()
-    messages.success(request,'Logout Sucessfully')
+    messages.success(request,'you are loged out!!!')
     return redirect('/')
