@@ -1,29 +1,103 @@
 {% extends 'base.html' %}
-{% block title %}Courses{% endblock title %}
+{% block title %}Courses {{course.title}}{% endblock title %}
 {% block body %}
 
 <div class="container-fluid">
 
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
-          <h1 class="display-4">{{course.title}}</h1>
-          <p class="lead">{{course.desc}}</p>
+            <h1 class="display-4">{{course.title}}</h1>
+            <p class="lead">{{course.desc}}</p>
         </div>
-      </div>
-      <div class="card mr-4" style="width: 18rem; margin-top: -161px; position: relative;
+    </div>
+    <div class="card mr-4" style="width: 18rem; margin-top: -161px; position: relative;
       float: right">
         <img src={{course.image.url}} class="card-img-top" alt="...">
         <div class="card-body">
-          <h5 class="card-title">{{course.title}}</h5>
-          <p class="card-text">{{course.desc}}</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+            <h5 class="card-title">{{course.title}}</h5>
+            <p class="card-text">{{course.desc}}</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
         </div>
-      </div>
+    </div>
 </div>
 <div class="container ">
-    <h3 >What you'll learn</h3>
-    <p>{{course.content|truncatechars:455}}</p>
-    <h3 >Course content</h3>
+    <div class="my-3">
+        <h3>What you'll learn</h3>
+        <p class=" pr-3 my-2">{{course.content|truncatechars:455}}</p>
+        <div class="my-3">
+
+        </div>
+        <div class="my-3">
+            <h3 class="my-3">Course content</h3>
+            <div class="row">
+                {% for course_lesson in course_lessons %}
+                <div class="col-4">
+                    
+                    <div class="list-group" id="list-tab{{course_lesson.sno}}" role="tablist">
+
+                        <a class="list-group-item list-group-item-action  " id="list-profile-list{{course_lesson.sno}}" data-toggle="list"
+                            href="#list-profile{{course_lesson.sno}}" role="tab" aria-controls="profile{{course_lesson.sno}}">{{course_lesson.lesson_name}}</a>
+
+                    </div>
+
+                </div>
+                <div class="col-8">
+                    <div class="tab-content" id="nav-tabContent">
+
+                        <div class="tab-pane fade" id="list-profile{{course_lesson.sno}}" role="tabpanel"
+                            aria-labelledby="list-profile-list{{course_lesson.sno}}">
+                            <div class="container">
+                                <h2>{{course.title}}- {{course_lesson.lesson_name}}</h2>
+
+
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-primary video-btn my-3" data-toggle="modal"
+                                    data-src="https://www.youtube.com/embed/NFWSFbqL0A0" data-target="#myModal">
+                                    Play Video 
+                                </button>
+
+                                
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+
+
+                                            <div class="modal-body">
+
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                                <!-- 16:9 aspect ratio -->
+                                                <div class="embed-responsive embed-responsive-16by9">
+                                                    <iframe class="embed-responsive-item" src="" id="video"
+                                                        allowscriptaccess="always" allow="autoplay"></iframe>
+                                                </div>
+
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+               {% endfor %}
+ 
+            </div>
+
+        </div>
+    </div>
 </div>
 
 

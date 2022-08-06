@@ -12,3 +12,12 @@ class Course(models.Model):
 
     def __str__(self) :
         return self.title
+class CourseLesson(models.Model):
+    sno = models.AutoField(primary_key= True)
+    lesson_name = models.CharField(max_length=50)
+    lesson_model = models.ForeignKey(Course, on_delete=models.CASCADE)
+    class Meta:
+        db_table='lesson_name'
+    def __str__(self):
+        return self.lesson_name
+
