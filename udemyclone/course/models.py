@@ -33,3 +33,10 @@ class Video(models.Model):
 
     def __str__(self) :
         return self.video_name
+
+class Purchasedcourse(models.Model):
+    cust_id=models.IntegerField()
+    purchase_id=models.IntegerField()
+    price=models.IntegerField()
+    
+    
