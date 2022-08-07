@@ -3,7 +3,7 @@ from course import views
 
 urlpatterns = [
      path('', views.course, name='course'),
-     path('coursehome<str:slug>', views.coursehome, name='coursehome-detail')
+     path('coursehome<str:slug>', views.coursehome, name='coursehome')
    
     
 ]
