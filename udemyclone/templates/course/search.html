@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %} Search Results {% endblock title %}
+
+
+
+{% block body %}
+<div class="container my-3">
+    <h2>Search results : </h2>
+    {% if allcourse|length < 1 %}
+   <p>No search results</p>
+    Your search query : <b>{{query}}</b> did not match any documents. <br>
+    Suggestions:
+    <ul>
+    <li>Make sure that all words are spelled correctly.</li>
+    <li>Try more general keywords.</li>
+   <li> Try fewer keywords.</li>
+   <li> Try different keywords.</li>
+    </li>
+    </ul>
+
+
+    {% endif %}
+    <div class="container my-3">
+        <div class="row">
+            {% for course in allcourse  %}
+            <div class="col my-3">
+                <div class="card" style="width: 18rem; margin-top: -16px; position: relative;">
+                    <img src="{{ course.image.url }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">{{course.title}}</h5>
+                      <p class="card-text">{{course.desc}}</p>
+                      <a href="/coursehome{{course.sno}}" class="btn btn-primary">Buy Now</a>
+                    </div>
+                  </div>
+            </div>
+            {% endfor %}
+        </div>
+        </div>
+    </div>
+ {% endblock %}

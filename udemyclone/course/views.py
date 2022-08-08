@@ -60,12 +60,13 @@ def search(request):
     query=request.GET['query']
     if len(query)>78:
         allcourse=Course.objects.none()
+        
     else:
-        allPostsTitle=Course.objects.filter(title__icontains=query)
-        allPostsAuthor=Course.objects.filter(author__icontains=query)
-        allPostsContent =Course.objects.filter(content__icontains=query)
-        allPosts=  allPostsTitle.union(allPostsContent, allPostsAuthor)
-    if allPosts.count()==0:
+        allcourseTitle=Course.objects.filter(title__icontains=query)
+        allcourseAuthor=Course.objects.filter(author__icontains=query)
+        allcourseContent =Course.objects.filter(content__icontains=query)
+        allcourse=  allcourseTitle.union(allcourseContent, allcourseAuthor)
+    if allcourse.count()==0:
         messages.warning(request, "No search results found. Please refine your query.")
-    context={'allPosts': allPosts, 'query': query}
-    return render(request, 'home/search.html', context)
+    context={'allcourse': allcourse, 'query': query}
+    return render(request, 'course/search.html', context)
