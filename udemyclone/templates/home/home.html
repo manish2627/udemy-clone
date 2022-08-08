@@ -15,13 +15,13 @@
       </div>
     </div>
   </div>
-<div class="jumbotron">
-    <h1 class="display-4 w-100">Welcome to UdemyClone</h1>
+<div class="jumbotron bg-transparent" style="  margin-top: -350px; position: relative;">
+    <h1 class="display-4 w-100"><b>Welcome to UdemyClone</b></h1>
     <p class="lead">Skills for your present (and your future). Get started with us.</p>
     <hr class="my-4">
     <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
     <p class="lead">
-      <a class="btn btn-primary btn-lg" href="#" role="button">Let's start learning,{{request.user.username}}</a>
+      <a class="btn btn-primary btn-lg" href="{% url 'course' %}" role="button">Let's start learning,with our courses</a>
     </p>
   </div>
 </div>
