@@ -1,3 +1,4 @@
+from tkinter import CASCADE
 from django.db import models
 
 # Create your models here.
@@ -36,8 +37,10 @@ class Video(models.Model):
         return self.video_name
 
 class Purchasecourse(models.Model):
-    cust_id=models.IntegerField()
-    purchase_id=models.IntegerField()
-    price=models.IntegerField()
+    purchase_course = models.ForeignKey(Course, on_delete=models.CASCADE)
+
+    # cust_id=models.IntegerField()
+    purchase_id=models.BooleanField(default=False)
+    price=models.FloatField()
     
     

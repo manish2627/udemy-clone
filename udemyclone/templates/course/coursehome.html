@@ -16,9 +16,58 @@
       float: right">
         <img src={{course.image.url}} class="card-img-top" alt="...">
         <div class="card-body">
-            <h5 class="card-title">{{course.title}}</h5>
+            <h5 class="card-title">{{course.title}}{{request.session.uid}}</h5>
             <p class="card-text">{{course.desc}}</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+           
+
+            {% if request.session.user %}
+            {% if purchase_course.purchase_id %}
+            <button type="submit" class="btn btn-primary " data-toggle="modal" data-target="#buynowModal">play</button>
+            {% else %}
+            <button type="submit" class="btn btn-primary " data-toggle="modal" data-target="#buynowModal">BUY NOW</button>
+            
+             {% endif %}
+
+            {% else %}
+            <button type="submit" class="btn btn-primary " data-toggle="modal" data-target="#loginModal">Login to buy</button>
+
+            {% endif %}
+            <!--moadal for buy now details strat here -->
+            <div class="modal fade" id="buynowModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="buynowModalLabel">Confirm your details for buy course </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                    
+                                <h3>Course: {{course.title}}</h3>
+                                <h5>Course instructor: {{course.author}}</h5>
+                                <h5>Course price: {{course.price}}</h5>
+                            </div>
+                            
+                            <form action="{% url 'buycourse' %}" method="POST">{% csrf_token %}                            
+                                <div class="form-group">
+                                    
+                                    <input type="hidden" class="form-control"name="courseid" value="{{course.sno}}"></input>
+                                    <input type="hidden" class="form-control" name="price" value="{{course.price}}"></input>
+                                   
+                                </div>
+                                <button type="submit" class="btn btn-secondary"> Processed to payment </button>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--moadal for buy now details end here -->
+           
         </div>
     </div>
 </div>
@@ -34,11 +83,12 @@
             <div class="row">
                 {% for course_lesson in course_lessons %}
                 <div class="col-4">
-                    
+
                     <div class="list-group" id="list-tab{{course_lesson.sno}}" role="tablist">
 
-                        <a class="list-group-item list-group-item-action  " id="list-profile-list{{course_lesson.sno}}" data-toggle="list"
-                            href="#list-profile{{course_lesson.sno}}" role="tab" aria-controls="profile{{course_lesson.sno}}">{{course_lesson.lesson_name}}</a>
+                        <a class="list-group-item list-group-item-action  " id="list-profile-list{{course_lesson.sno}}"
+                            data-toggle="list" href="#list-profile{{course_lesson.sno}}" role="tab"
+                            aria-controls="profile{{course_lesson.sno}}">{{course_lesson.lesson_name}}</a>
 
                     </div>
 
@@ -53,19 +103,32 @@
 
 
                                 <!-- Button trigger modal -->
-                             
-                                {% for video  in  videos %} 
-                                {% if video.video_lesson == course_lesson %}
-                                <div><h5>{{video.video_name}}</h5>
-                                <button type="button" class="btn btn-primary video-btn my-1" data-toggle="modal"
-                                    data-src="{{video.video_link}}" data-target="#myModal">
-                                    Play Video 
-                                </button>
-                            </div> {% endif %}
-                                {% endfor %}
-                               
 
-                                
+                                {% for video in videos %}
+                                {% if video.video_lesson == course_lesson %}
+                                <div>
+                                    <h5>{{video.video_name}}</h5>
+                                    {% if purchase_course.purchase_id %}
+                                    <button type="button" class="btn btn-primary video-btn my-1" data-toggle="modal"
+                                        data-src="{{video.video_link}}" data-target="#myModal">
+                                        Play Video
+                                    </button>
+                                    
+                                    {% else %}
+                                    
+                                    <button type="button" class="btn btn-primary video-btn my-1" data-toggle="modal"
+                                    data-src="{{video.video_link}}" data-target="#loginModal">
+                                    Play Video 
+                                </button><i class="bi bi-lock"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-lock" viewBox="0 0 16 16">
+                                    <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/>
+                                  </svg></i>
+                                    
+                                    {% endif %}
+                                </div> {% endif %}
+                                {% endfor %}
+
+
+
 
                                 <!-- Modal -->
                                 <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
@@ -82,8 +145,9 @@
                                                 </button>
                                                 <!-- 16:9 aspect ratio -->
                                                 <div class="embed-responsive embed-responsive-16by9">
-                                                    <iframe class="embed-responsive-item" src="http://techslides.com/demos/sample-videos/small.webm" id="video"
-                                                        allowscriptaccess="always" ></iframe>
+                                                    <iframe class="embed-responsive-item"
+                                                        src="http://techslides.com/demos/sample-videos/small.webm"
+                                                        id="video" allowscriptaccess="always"></iframe>
                                                 </div>
 
 
@@ -101,8 +165,8 @@
                     </div>
 
                 </div>
-               {% endfor %}
- 
+                {% endfor %}
+
             </div>
 
         </div>
