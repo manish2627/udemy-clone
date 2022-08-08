@@ -27,4 +27,8 @@ def contact(request):
             messages.success(request, 'your massage has been sent succesfully  !!!')
         
     return render(request, 'home/contact.html') 
-    return render(request, 'home/contact.html')
+
+def about(request):
+    return render(request, 'home/aboutme.html')
+    
+

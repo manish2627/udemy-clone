@@ -49,8 +49,23 @@ def buycourse(request):
         
 
         purchase = Purchasecourse( purchase_course = purchase_course, purchase_id=True, price=price, )
-        purchase.save()
+       
         messages.success(request,'thank you for buying this course ....!!!')
+        purchase.save()
        
 
     return redirect('/')
+
+def search(request):
+    query=request.GET['query']
+    if len(query)>78:
+        allcourse=Course.objects.none()
+    else:
+        allPostsTitle=Course.objects.filter(title__icontains=query)
+        allPostsAuthor=Course.objects.filter(author__icontains=query)
+        allPostsContent =Course.objects.filter(content__icontains=query)
+        allPosts=  allPostsTitle.union(allPostsContent, allPostsAuthor)
+    if allPosts.count()==0:
+        messages.warning(request, "No search results found. Please refine your query.")
+    context={'allPosts': allPosts, 'query': query}
+    return render(request, 'home/search.html', context)
