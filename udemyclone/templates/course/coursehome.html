@@ -21,7 +21,7 @@
            
 
             {% if request.session.user %}
-            {% if course.sno in purchase_course %}
+            {% if course.sno == purchase_course %}
             <button  class="btn btn-primary " >Start Learnig</button>
             {% else %}
             <button type="submit" class="btn btn-primary " data-toggle="modal" data-target="#buynowModal">BUY NOW</button>
