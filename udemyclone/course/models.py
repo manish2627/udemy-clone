@@ -39,8 +39,8 @@ class Video(models.Model):
 class Purchasecourse(models.Model):
     purchase_course = models.ForeignKey(Course, on_delete=models.CASCADE)
 
-    # cust_id=models.IntegerField()
-    purchase_id=models.BooleanField(default=False)
+    user_id=models.IntegerField()
+    purchase_id =models.IntegerField()
     price=models.FloatField()
     
     

@@ -46,6 +46,7 @@ def logIn(request):
     if request.method=='POST':
         email=request.POST['email']
         password=request.POST['password']
+        print()
         try:
             user=User.objects.get(email=email,password=password)
             if user.mail_validate==0:

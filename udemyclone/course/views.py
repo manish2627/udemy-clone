@@ -22,13 +22,14 @@ def coursehome(request,slug):
     # uid=Course.objects.get(sno = slug)    
     # purchaged_course=Purchasecourse.objects.get(purchase_course = uid)
     # print(purchaged_course.purchase_id)
+    
     try:
-        uid=Course.objects.get(sno = slug)
-        purchaged_course=Purchasecourse.objects.get(purchase_course = uid)
+        uid=request.session['uid']
+        purchaged_course=Purchasecourse.objects.get(user_id = uid)
    
         
     except:
-        purchaged_course=  purchaged_course=Purchasecourse.objects.none()
+        purchaged_course=[]
         pass
     print(purchaged_course)
 
@@ -43,12 +44,10 @@ def buycourse(request):
 
         course_id= request.POST['courseid'] 
         purchase_course = Course.objects.get(sno = course_id)
-       
-       
-        price=request.POST['price']
-        
+        user_id = request.session['uid']       
+        price=request.POST['price']     
 
-        purchase = Purchasecourse( purchase_course = purchase_course, purchase_id=True, price=price, )
+        purchase = Purchasecourse( purchase_course = purchase_course, purchase_id=course_id, price=price,user_id = user_id )
        
         messages.success(request,'thank you for buying this course ....!!!')
         purchase.save()
