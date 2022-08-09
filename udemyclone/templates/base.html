@@ -92,7 +92,8 @@
           </button>
         </div>
         <div class="modal-body">
-          <form action="{% url 'login' %}" method="POST">{% csrf_token %}
+          <form action="{% url 'login' %}" method="POST">
+            {% csrf_token %}
 
             <div class="form-group">
               <label for="exampleFormControlInput1">Enter your email</label>
@@ -124,7 +125,8 @@
           </button>
         </div>
         <div class="modal-body">
-          <form action="{% url 'signup' %}" method="POST">{% csrf_token %}
+          <form action="{% url 'signup' %}" method="POST">
+            {% csrf_token %}
             <div class="form-group">
               <label for="exampleFormControlInput1">User Name</label>
               <input type="test" class="form-control" id="username" name="username" placeholder="username">

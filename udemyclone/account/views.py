@@ -5,8 +5,10 @@ from account.models import User
 from django.contrib import messages 
 from django.contrib.auth  import authenticate,  login, logout
 
+
 # Create your views here.
 def signUp(request):
+    
     if request.method == 'POST':
         # post the user details 
         username = request.POST['username']
@@ -16,7 +18,6 @@ def signUp(request):
         pass1 = request.POST['pass1']
         pass2 = request.POST['pass2']
 
-        print(username, fname, lname,signupemail,pass1,pass2)
         # check user length 
         # if len(username)<10:
         #     messages.error(request, " Your user name must be under 10 characters")
@@ -37,8 +38,9 @@ def signUp(request):
             return redirect('/') 
         except:
             myuser = User(user=username,email=signupemail,password=pass1)
+           
+            messages.success(request,'Account created successfully ..!!!')
             myuser.save()
-            messages.success(request,'Account created successfully  Please check your mail to conform your email')
             return redirect('/') 
 
 
@@ -46,18 +48,12 @@ def logIn(request):
     if request.method=='POST':
         email=request.POST['email']
         password=request.POST['password']
-        print()
-        try:
-            user=User.objects.get(email=email,password=password)
-            if user.mail_validate==0:
-                # token=send_verification_link(user)
-                messages.warning(request,'Please check your mail to conform your email')
-                return redirect('/')
-            else:
-                request.session['user']=user.user
-                request.session['uid']=user.id
-                messages.success(request,'Login Successfullly')
-                return redirect('/')
+        user=User.objects.get(email=email,password=password)        
+        try:         
+            request.session['user']=user.user
+            request.session['uid']=user.id
+            messages.success(request,'Login Successfullly')
+            return redirect('/')
         except:
             messages.error(request,'invalid credencials')
             return redirect('/')

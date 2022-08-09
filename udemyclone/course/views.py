@@ -24,8 +24,10 @@ def coursehome(request,slug):
     # print(purchaged_course.purchase_id)
     
     try:
-        uid=request.session['uid']
-        purchaged_course=Purchasecourse.objects.get(user_id = uid)
+        
+        purchaged_course=Purchasecourse.objects.get(purchase_course=course)
+        
+        purchaged_course= purchaged_course.purchase_id
    
         
     except:
