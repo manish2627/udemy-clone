@@ -28,8 +28,7 @@ SECRET_KEY =  os.environ['KEY']
 DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1','djangoclone.herokuapp.com']
-
-
+CSRF_TRUSTED_ORIGINS=['https://djangoclone.herokuapp.com']
 # Application definition
 
 INSTALLED_APPS = [
@@ -85,6 +84,7 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
 
 
 # Password validation

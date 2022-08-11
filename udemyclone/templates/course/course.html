@@ -14,8 +14,11 @@
                 <div class="card" style="width: 18rem; margin-top: -16px; position: relative;">
                     <img src="{{ course.image.url }}" class="card-img-top" style="height:250px"alt="...">
                     <div class="card-body">
-                      <h5 class="card-title">{{course.title}}</h5>
-                      <p class="card-text">{{course.desc}}</p>
+                        <h5 class="card-title">{{course.title}}</h5>
+                        <h6 class="card-title">BY {{course.author}}</h6>
+                                  <p class="card-text">{{course.desc}}</p>
+                                 
+                                  <h6 class="card-title"><b> {{course.price}}</b></h6>
                       <a href="/coursehome{{course.sno}}" class="btn btn-primary">Take a View </a>
                     </div>
                   </div>
